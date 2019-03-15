@@ -156,7 +156,7 @@ a.library_schedule = autosched.slow
 a.max_var_iterations = cmd.num_iter			
 a.max_molpdf = 1e6  
 
-#-- Molecular dynamics optimiation protocol
+#-- Molecular dynamics optimization protocol
 if cmd.md_level == 'very_fast':
     a.md_level = refine.very_fast    			
     a.repeat_optimization = cmd.repeat_wopt
