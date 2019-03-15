@@ -4,54 +4,56 @@ echo "@autor: ROPON-PALACIOS G., PhD (c)"
 echo "Copyright (c) 2019 KIPU Bioinformatics"
 echo "E-mail: biodano.geo@gmail.com"
 echo "date: March 14, 2019."
+#Tested to gromacs 2018 and 2019. 
+#You should can change parameters for her apropiate dates  
 echo "usage: bash trjanalysis.sh" 
 echo "Waiting .... processing data"
 sleep 10
-echo "Analysing data from NIPAH drugs"
+echo "Analysing data from Protein-ligand complex"
 sleep 5
 echo  "¡wainting...!"
-#echo "Checking if your simulation a completed ..."
-#sleep 4
-#check -f md_0_1.xtc 
-#echo "Converting XTC traj for pdb snapshots..."
-#echo "View your pdb snaphots with molecular view tool as Pymol"
-#echo "Change -dt command into script for customized resolution of snapshots ..."
-#echo "¡wainting...!"
-#trjconv -s md_0_1.tpr -f md_0_1.xtc -o snapshot.pdb -pbc nojump -dt 1000 
-#clear
-#echo "processing accurate data ... XTC file"
-#sleep 5
-#echo  "0" | trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
-#clear
-#echo "Analysing RMSD"
-#sleep 3
-#echo  "¡processing ... RMSD!"
-#sleep 5
-#echo "¡processing ... RMSD from Protein-Ligand Complex"
-#sleep 3
-#echo -e "4\n13" | g_rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_complex.xvg -tu ns 
-#clear
-#echo "¡processing ... RMSD from Protein only"
-#sleep 3
-#echo -e "4\n4" | g_rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_protein.xvg -tu ns 
-#clear
-#echo "¡processing ... RMSD from Lingand only"
-#sleep 3
-#echo -e "13\n13" | g_rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_ligand.xvg -tu ns 
-#clear
+echo "Checking if your simulation a completed ..."
+sleep 4
+gmx check -f md_0_1.xtc 
+echo "Converting XTC traj for pdb snapshots..."
+echo "View your pdb snaphots with molecular view tool as Pymol"
+echo "Change -dt command into script for customized resolution of snapshots ..."
+echo "¡wainting...!"
+gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o snapshot.pdb -pbc nojump -dt 1000 
+clear
+echo "processing accurate data ... XTC file"
+sleep 5
+echo  "0" | gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -ur compact
+clear
+echo "Analysing RMSD"
+sleep 3
+echo  "¡processing ... RMSD!"
+sleep 5
+echo "¡processing ... RMSD from Protein-Ligand Complex"
+sleep 3
+echo -e "4\n13" | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_complex.xvg -tu ns 
+clear
+echo "¡processing ... RMSD from Protein only"
+sleep 3
+echo -e "4\n4" | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_protein.xvg -tu ns 
+clear
+echo "¡processing ... RMSD from Lingand only"
+sleep 3
+echo -e "13\n13" | gmx rms -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsd_ligand.xvg -tu ns 
+clear
 #-- RMSF Analysis 
-#echo "Analysing RMSF"
-#sleep 3
-#echo "¡procesing ... RMSF"
-#sleep 5
-#echo "1" | g_rmsf -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsf_fullprotein.xvg -res 
-#clear
+echo "Analysing RMSF"
+sleep 3
+echo "¡procesing ... RMSF"
+sleep 5
+echo "1" | gmx rmsf -s md_0_1.tpr -f md_0_1_noPBC.xtc -o rmsf_fullprotein.xvg -res 
+clear
 #-- Hbond Analysis
-#echo "Analysing Hbond"
-#sleep 3
-#echo "processing ... Hbonds"
-#echo -e "1\n13" |  g_hbond -f md_0_1_noPBC.xtc -s md_0_1.tpr -num hydrogen2-bond-protein-ligand.xvg -#tu ns
-#clear
+echo "Analysing Hbond"
+sleep 3
+echo "processing ... Hbonds"
+echo -e "1\n13" |  gmx hbond -f md_0_1_noPBC.xtc -s md_0_1.tpr -num hydrogen2-bond-protein-ligand.xvg -#tu ns
+clear
 #-- Distance Hbond analysis
 echo "Analysing Hbond distance cutoff < 3.5 Angstrom"
 sleep 2
