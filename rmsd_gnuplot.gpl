@@ -1,0 +1,22 @@
+## written by: ROPÓN-PALACIOS G., PhD (c)
+## Ion Channels Lab, IMSaTeD, CONICET-UNSE, SE, Argentina.
+## E-mail: biodnao.geo@gmail.com, georopon@gmail.com, gropon@conicet.gov.ar 
+## Date: 08 Oct 2019.
+## Usage: rmsd_gnuplot.gpl rmsd.xvg rmsd.dat 
+
+##### Transformando XVG to DAT #####
+IFILE=$1 #; inputname .xvg format 
+OFILE=$2 #; outputname .dat format
+awk '{if ($1 !~ /[#@]/) print $1"\t"$2}' $IFILE > $OFILE #; awk script  
+##### GNUPLOT script 
+cat << EOF > rmsd.gpl  #; namefile
+set title "RMSD plotting" #; 
+set xlabel "time [ns]"
+set ylabel "rmsd C-alpha [nm]"
+plot "rmsdligand.dat" u 1:2 w lines #; change rmsdligand.dat --> for correct name 
+EOF
+##### Run script
+gnuplot -p rmsd.gpl #; run command script 
+
+
+ 
