@@ -4,7 +4,7 @@
 Python script to run homology modelling calculations
 using MODELLER without much hassle.
 Original script written by JR @ Utrecht, 2015.
-Modified version by: ROPON-PALACIOS G, PhD (c), for customized models refinamet protocol. 
+Modified version by: ROPON-PALACIOS G, PhD (c), for customized models refinament protocol. 
 KIPU Bioinformatics, date: March 13, 2019. 
 """
 
